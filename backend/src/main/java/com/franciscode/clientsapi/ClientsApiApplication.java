@@ -1,4 +1,4 @@
-package com.franciscode.clientsApi;
+package com.franciscode.clientsapi;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
