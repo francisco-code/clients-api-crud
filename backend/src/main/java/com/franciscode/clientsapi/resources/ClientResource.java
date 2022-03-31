@@ -18,8 +18,8 @@ public class ClientResource {
 	@GetMapping
 	public ResponseEntity<List<Client>> findAll() {
 		List<Client> list = new ArrayList<>();
-		list.add(new Client(1L, "Lindalva Moreira", "123.456.113-80", 3000.0, Instant.parse("1955-12-06T10:30:00Z"), 4));
-		list.add(new Client(2L, "José Aldenísio", "123.456.113-80", 3000.0, Instant.parse("1953-05-31T10:30:00Z"), 4));
+		list.add(new Client(1L, "Lindalva Moreira", "123.456.789-80", 3000.0, Instant.parse("1955-12-06T10:30:00Z"), 4));
+		list.add(new Client(2L, "José Aldenísio", "123.456.789-80", 3000.0, Instant.parse("1953-05-31T10:30:00Z"), 4));
 		
 		return ResponseEntity.ok().body(list);
 	}
