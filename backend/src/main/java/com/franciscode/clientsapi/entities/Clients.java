@@ -3,9 +3,19 @@ package com.franciscode.clientsapi.entities;
 import java.io.Serializable;
 import java.time.Instant;
 
-public class Client implements Serializable {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "tb_clients")
+public class Clients implements Serializable {
 	private static final long serialVersionUID = -4060683890342038516L;
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
 	private String cpf;
@@ -13,10 +23,10 @@ public class Client implements Serializable {
 	private Instant birthDate;
 	private Integer children;
 	
-	public Client() {
+	public Clients() {
 	}
 
-	public Client(Long id, String name, String cpf, Double income, Instant birthDate, Integer children) {
+	public Clients(Long id, String name, String cpf, Double income, Instant birthDate, Integer children) {
 		this.id = id;
 		this.name = name;
 		this.cpf = cpf;
@@ -89,7 +99,7 @@ public class Client implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Client other = (Client) obj;
+		Clients other = (Clients) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
