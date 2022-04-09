@@ -1,6 +1,7 @@
 package com.franciscode.clientsapi.services;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,5 +22,12 @@ public class ClientsService {
 	public List<ClientsDTO> findAll() {
 		List<Clients> list = repository.findAll();
 		return list.stream().map(x -> new ClientsDTO(x)).collect(Collectors.toList());
+	}
+
+	@Transactional(readOnly = true)
+	public ClientsDTO findById(Long id) {
+		Optional<Clients> obj = repository.findById(id);
+		Clients entity = obj.get();
+		return new ClientsDTO(entity);
 	}
 }
