@@ -1,0 +1,3 @@
+INSERT INTO tb_clients (name, cpf, income, birth_date, children) VALUES ('Alex', '121.231.335-71', 1500.0, TIMESTAMP WITH TIME ZONE '2020-06-14T21:05:20Z', 2);
+INSERT INTO tb_clients (name, cpf, income, birth_date, children) VALUES ('Aline', '121.231.335-71', 2000.0, TIMESTAMP WITH TIME ZONE '2020-05-06T21:06:39Z', 4);
+INSERT INTO tb_clients (name, cpf, income, birth_date, children) VALUES ('Erico', '121.231.335-71', 4000.0, TIMESTAMP WITH TIME ZONE '2020-06-01T14:24:21Z', 1);
