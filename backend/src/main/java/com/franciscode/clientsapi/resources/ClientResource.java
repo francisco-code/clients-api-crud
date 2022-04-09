@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.franciscode.clientsapi.dto.ClientsDTO;
-import com.franciscode.clientsapi.entities.Clients;
 import com.franciscode.clientsapi.services.ClientsService;
 
 @RestController
