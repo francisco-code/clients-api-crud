@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import javax.persistence.EntityNotFoundException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.franciscode.clientsapi.dto.ClientsDTO;
 import com.franciscode.clientsapi.entities.Clients;
 import com.franciscode.clientsapi.repositories.ClientsRepository;
-import com.franciscode.clientsapi.services.exceptions.EntityNotFoundException;
+import com.franciscode.clientsapi.services.exceptions.ResourceNotFoundException;
 
 @Service
 public class ClientsService {
@@ -28,7 +30,7 @@ public class ClientsService {
 	@Transactional(readOnly = true)
 	public ClientsDTO findById(Long id) {
 		Optional<Clients> obj = repository.findById(id);
-		Clients entity = obj.orElseThrow(() -> new EntityNotFoundException("Cliente não encontrado"));
+		Clients entity = obj.orElseThrow(() -> new ResourceNotFoundException("Cliente não encontrado"));
 		return new ClientsDTO(entity);
 	}
 
@@ -43,5 +45,22 @@ public class ClientsService {
 		entity = repository.save(entity);
 		
 		return new ClientsDTO(entity);
+	}
+
+	@Transactional
+	public ClientsDTO update(Long id, ClientsDTO dto) {
+		try {
+			Clients entity = repository.getById(id);
+			entity.setName(dto.getName());
+			entity.setCpf(dto.getCpf());
+			entity.setIncome(dto.getIncome());
+			entity.setChildren(dto.getChildren());
+			entity.setBirthDate(dto.getBirthDate());
+			entity = repository.save(entity);
+			return new ClientsDTO(entity);
+		}
+		catch (EntityNotFoundException e) {
+			throw new ResourceNotFoundException("Id não encontrado" + id);
+		}
 	}
 }
