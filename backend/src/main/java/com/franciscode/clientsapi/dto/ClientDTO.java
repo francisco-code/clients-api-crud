@@ -3,9 +3,9 @@ package com.franciscode.clientsapi.dto;
 import java.io.Serializable;
 import java.time.Instant;
 
-import com.franciscode.clientsapi.entities.Clients;
+import com.franciscode.clientsapi.entities.Client;
 
-public class ClientsDTO implements Serializable {
+public class ClientDTO implements Serializable {
 	private static final long serialVersionUID = 7739159444774188023L;
 	
 	private Long id;
@@ -15,10 +15,10 @@ public class ClientsDTO implements Serializable {
 	private Instant birthDate;
 	private Integer children;
 	
-	public ClientsDTO() {
+	public ClientDTO() {
 	}
 
-	public ClientsDTO(Long id, String name, String cpf, Double income, Instant birthDate, Integer children) {
+	public ClientDTO(Long id, String name, String cpf, Double income, Instant birthDate, Integer children) {
 		this.id = id;
 		this.name = name;
 		this.cpf = cpf;
@@ -27,7 +27,7 @@ public class ClientsDTO implements Serializable {
 		this.children = children;
 	}
 	
-	public ClientsDTO(Clients entity) {
+	public ClientDTO(Client entity) {
 		this.id = entity.getId();
 		this.name = entity.getName();
 		this.cpf = entity.getCpf();

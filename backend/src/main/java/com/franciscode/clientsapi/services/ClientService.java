@@ -12,34 +12,34 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.franciscode.clientsapi.dto.ClientsDTO;
-import com.franciscode.clientsapi.entities.Clients;
-import com.franciscode.clientsapi.repositories.ClientsRepository;
+import com.franciscode.clientsapi.dto.ClientDTO;
+import com.franciscode.clientsapi.entities.Client;
+import com.franciscode.clientsapi.repositories.ClientRepository;
 import com.franciscode.clientsapi.services.exceptions.DataBaseException;
 import com.franciscode.clientsapi.services.exceptions.ResourceNotFoundException;
 
 @Service
-public class ClientsService {
+public class ClientService {
 	
 	@Autowired
-	private ClientsRepository repository;
+	private ClientRepository repository;
 
 	@Transactional(readOnly = true)
-	public Page<ClientsDTO> findAllPaged(PageRequest pageRequest) {
-		Page<Clients> list = repository.findAll(pageRequest);
-		return list.map(x -> new ClientsDTO(x));
+	public Page<ClientDTO> findAllPaged(PageRequest pageRequest) {
+		Page<Client> list = repository.findAll(pageRequest);
+		return list.map(x -> new ClientDTO(x));
 	}
 
 	@Transactional(readOnly = true)
-	public ClientsDTO findById(Long id) {
-		Optional<Clients> obj = repository.findById(id);
-		Clients entity = obj.orElseThrow(() -> new ResourceNotFoundException("Cliente não encontrado"));
-		return new ClientsDTO(entity);
+	public ClientDTO findById(Long id) {
+		Optional<Client> obj = repository.findById(id);
+		Client entity = obj.orElseThrow(() -> new ResourceNotFoundException("Cliente não encontrado"));
+		return new ClientDTO(entity);
 	}
 
 	@Transactional
-	public ClientsDTO insert(ClientsDTO dto) {
-		Clients entity = new Clients();
+	public ClientDTO insert(ClientDTO dto) {
+		Client entity = new Client();
 		entity.setName(dto.getName());
 		entity.setCpf(dto.getCpf());
 		entity.setIncome(dto.getIncome());
@@ -47,20 +47,20 @@ public class ClientsService {
 		entity.setBirthDate(dto.getBirthDate());
 		entity = repository.save(entity);
 		
-		return new ClientsDTO(entity);
+		return new ClientDTO(entity);
 	}
 
 	@Transactional
-	public ClientsDTO update(Long id, ClientsDTO dto) {
+	public ClientDTO update(Long id, ClientDTO dto) {
 		try {
-			Clients entity = repository.getById(id);
+			Client entity = repository.getById(id);
 			entity.setName(dto.getName());
 			entity.setCpf(dto.getCpf());
 			entity.setIncome(dto.getIncome());
 			entity.setChildren(dto.getChildren());
 			entity.setBirthDate(dto.getBirthDate());
 			entity = repository.save(entity);
-			return new ClientsDTO(entity);
+			return new ClientDTO(entity);
 		}
 		catch (EntityNotFoundException e) {
 			throw new ResourceNotFoundException("Id não encontrado" + id);

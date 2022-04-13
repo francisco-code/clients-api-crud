@@ -14,7 +14,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "tb_clients")
-public class Clients implements Serializable {
+public class Client implements Serializable {
 	private static final long serialVersionUID = -4060683890342038516L;
 	
 	@Id
@@ -32,10 +32,10 @@ public class Clients implements Serializable {
 	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
 	private Instant updatedAt;
 	
-	public Clients() {
+	public Client() {
 	}
 
-	public Clients(Long id, String name, String cpf, Double income, Instant birthDate, Integer children) {
+	public Client(Long id, String name, String cpf, Double income, Instant birthDate, Integer children) {
 		this.id = id;
 		this.name = name;
 		this.cpf = cpf;
@@ -126,7 +126,7 @@ public class Clients implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Clients other = (Clients) obj;
+		Client other = (Client) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;

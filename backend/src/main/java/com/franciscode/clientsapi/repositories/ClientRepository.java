@@ -3,9 +3,9 @@ package com.franciscode.clientsapi.repositories;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.franciscode.clientsapi.entities.Clients;
+import com.franciscode.clientsapi.entities.Client;
 
 @Repository
-public interface ClientsRepository extends JpaRepository<Clients, Long> {
+public interface ClientRepository extends JpaRepository<Client, Long> {
 
 }
